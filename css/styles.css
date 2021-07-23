@@ -1,0 +1,632 @@
+/* Google Fonts*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+}
+/* Variable CSS*/
+:root{
+--header-height:2rem;  /* 16px=1rem*/
+/* COLORS*/
+--first-color:#069C54;
+--first-color-alt:#048654;
+--title-color:#393939;
+--text-color:#707070;
+--text-color-light:#A6a6a6;
+--body-color:#Fbfefd;
+--container-color:#ffffff;
+
+/* font and typography*/
+--body-font:'Poppins',sans-serif;
+--biggest-font-size:2.25rem;
+--h1-font-size:1.5rem;
+--h2-font-size:1.25rem;
+--h3-font-size:1rem;
+--normal-font-size:.938rem;
+--small-font-size:.813rem;
+--smaller-font-size:.75rem;
+
+/* font weight*/
+--font-medium:500;
+--font-semi-bold:600;
+
+/* marginss*/
+--mb-1:.5rem;
+--mb-2:1rem;
+--mb-3:1.5rem;
+--mb-4:2rem;
+--mb-5:2.5rem;
+--mb-6:3rem;
+
+/* z index*/
+--z-tooltip:10;
+--z-fixed:100;
+}
+/* set for min width*/
+@media screen and (min-width:768px)
+{
+    :root{
+    --biggest-font-size:4rem;
+    --h1-font-size:2.25rem;
+    --h2-font-size:1.5rem;
+    --h3-font-size:1.25rem;
+    --normal-font-sizze:1rem;
+    --small-font-size:.875rem;
+    --smaller-font-size:.813rem;}
+}
+/* for base*/
+*,::before,::after
+{
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+/*   Variable for dark theme content    */
+body.dark-theme{
+ 
+--title-color:#f1f3f2;
+--text-color:#C7D1Cc;
+--body-color:#1d2521;
+--container-color:#27302c;
+}
+/*    Button Dark/light      */
+.change-theme{
+    position:absolute;/* we need in nav bar not from main */
+    right:var(--mb-6);
+    top:var(--mb-1);
+    color:var(--text-color);
+    font-size: var(--mb-2);
+    cursor:pointer;
+}
+body{
+    margin:var(--header-height) 0 0 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+     background-color: var(--body-color);
+     color:var(--text-color);
+     line-height: 1.6;
+}
+
+h1,h2,h3,p,ul{
+    padding:0;
+}
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+img{
+    max-width: 100%;
+    height:auto;
+
+}
+
+
+/* Class CSS*/
+.section{
+    padding: 4rem 0 2rem;
+  }
+  
+.section-title, .section-subtitle{
+    text-align: center;
+  }
+  
+.section-title{
+    font-size: var(--h1-font-size);
+    color: var(--title-color);
+    margin-bottom: var(--mb-3);
+  }
+  
+.section-subtitle{
+    display: block;
+    color: var(--first-color);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-1);
+  }
+
+
+/* Layouts*/
+.bd-container{
+max-width:100%;
+width:calc(100%-2rem);
+margin-left: var(--mb-4);
+margin-right: var(--mb-4);
+}
+.bd-grid{
+    display:grid;
+    gap:var(--mb-2);
+}
+.l-header{
+width: 100%;
+position: fixed;
+top:0;
+left:0;
+z-index:var(--z-fixed);
+background-color: var(--body-color);
+}
+
+
+/* nav */
+.nav{
+  max-width: 100%;
+  height:calc(var(--header-height)+var(--mb-3)); 
+  display: flex;    /* if 3 tags so give a 3 equal space*/
+  justify-content: space-between;  
+  align-items:center; 
+}
+
+/*    menu directly show when screen size>1024px   */
+@media screen and (max-width: 768px){
+    .nav__menu{
+      position: fixed;
+      top:-100%; /* here use var(--header-height); so its show but we cnt want */  
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 0 1rem;
+      background-color: var(--body-color);
+      transition: .4s;
+      box-shadow: 0 4px 4px rgba(0,0,0,.1);
+      border-radius: 0 0 1rem 1rem;
+      z-index: var(--z-fixed);
+    }
+
+ .nav__item{
+    margin-bottom:var(--mb-2);
+   
+ }
+ .nav__link,.nav__logo,.nav__toggle{
+    color:var(--text-color);
+    font-weight:var(--font-medium);
+
+ }
+ .nav__link
+ {
+    transition: .2s;
+ }
+ .nav__link:hover{
+    color:var(--first-color-alt);
+    font-size: var(--h2-font-size);
+ }
+ .nav__logo:hover{
+    color:var(--first-color);
+    
+ }
+ .nav__toggle{
+    font-size: 1.3rem;
+    cursor:pointer;    
+ }
+
+}
+/* show menu here */
+.show-menu
+{
+    top:var(--header-height);
+    text-align: center;
+}
+
+/* active menu*/
+.active-link{
+    color: var(--first-color);
+}
+
+/* change background header   here if scroll down so header turn in box*/
+.scroll-header{
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);   
+  }
+
+/* scroll top*/
+.scrolltop
+{position:fixed;
+right:1rem;
+bottom:-20%;   /* beacuse its show when screen move down to 560*/
+display: flex;
+justify-content: center;
+align-items: center;
+padding: .3rem;
+background :rgba(6, 156, 84, 0.5);
+border-radius : .4rem;
+z-index:var(--z-tooltip);
+transition: .4s;
+visibility: hidden;
+}
+.scrolltop:hover{
+    background-color: var(--first-color-alt);
+}
+.scrolltop__icon{
+    font-size: 1.8rem;
+    color:var(--body-color);
+}
+/* Show ScrollTop  its show when screen down to 560 otherewise hidden */
+.scroll-top{
+visibility: visible;
+bottom:1rem;
+}
+
+
+/* FOR Home*/
+.home__container{
+    height: calc(100vh-var(var(--header-height)));
+    align-content: center;
+}
+.home__title{
+    font-size: var(--biggest-font-size);
+    color:var(--first-color);
+    margin-bottom: var(--mb-1);
+}
+.home__subtitle{
+font-size: var(--h2-font-size);
+color: var(--title-color);
+margin-bottom: var(--mb-4);
+}
+.home__img{
+    width: 20rem;
+    justify-self: center;
+    margin-top: var(--mb-4);
+}
+
+
+/* BUtton  this buton features for all buttons*/
+.button{    
+background-color: var(--first-color);
+color:var(--body-color);
+padding: 0.75rem 1rem;
+border-radius: .5rem;
+transition: .3s;
+}
+.button:hover{
+    background-color:var(--first-color-alt);
+    
+}
+
+
+/* About */
+.about__data{
+    text-align:center;
+}
+.about__description{
+    margin-bottom: var(--mb-3);
+}
+.about__img{
+ width:20rem;
+ border-radius: var(--mb-1);
+ justify-self: center;   
+}
+
+/*  SERVICES  */
+.service__container{
+    
+    row-gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    justify-content: center;
+}
+
+.service__content{
+    text-align: center;
+}
+.service__img{
+    width:4rem;
+    height: 4rem;
+    fill: var(--first-color); /* fill colorin svg */
+   justify-self: center;
+}
+.section-title{
+    text-transform: capitalize;
+   
+    color:var(--title-color);
+    margin-bottom: var(--mb-1);
+}
+.service__description
+{
+   padding:0 1.5rem; 
+}
+
+
+
+/*    MENU    */
+.menu__container{
+    grid-template-columns:repeat(2,1fr) ; /* it means make 2 column with 1fr*/
+    justify-content:center;
+}
+.menu__content{
+    display:flex; /* take a total width and divide  so here is 2 column */
+    flex-direction: column;/*here each content represnt by column*/
+    position:relative;
+    color:var(--container-color);
+    border-radius: var(--mb-3);
+    box-shadow: 0 2px 4px rgba(3, 74, 40, 0.15);
+    padding: var(--mb-1);
+}
+.menu__img{
+    width:8rem;
+    height: 8rem;
+    align-self:center ;
+}
+.menu__img:hover{
+    width:12rem;
+    height: 12rem;
+}
+.menu__name,.menu__price{
+    font-weight: var(--font-semi-bold);
+color:var(--title-color);
+}
+.menu__name{
+    font-size:var(--normal-font-size);
+}
+.menu__detail,.menu__price{
+font-size: var(--small-font-size);
+}
+.menu__detail{
+    margin-bottom: var(--mb-1);
+    color:var(--first-color);
+   
+}
+.menu__button{
+position:absolute;  /* here beacuse it take acc. to relative*/
+padding:var(--mb-2);
+bottom:0;
+right:0;
+border-radius:.5rem 0 .5rem 0;
+}
+
+
+/*   APP   */
+.app__data
+{
+    text-align: center;
+}
+.app__description{
+    margin-bottom: var(--mb-5);
+}
+.app__store{
+    width:12rem;
+    margin: 0 var(--mb-2);
+}
+.aap__img
+{
+    width:15rem;
+    justify-self: center;
+}
+.app__title
+{
+    text-align: center;
+    color:var(--first-color);
+}
+
+/*   CONTACT   */
+.contact__container
+{
+    text-align: center;
+}
+.contact__description{
+    margin-bottom: var(--mb-3);
+}
+
+/*      FOOTER     */
+.footer__container{
+    /* here use column grid in repeatly . min. size is 220 and max is 2fr=550px*/
+    grid-template-columns: repeat(auto-fit,minmax(220px,2fr));
+    row-gap:var(--mb-4);
+}
+.footer__logo{
+    font-size:var(--h2-font-size);
+    color:var(--first-color);
+    font-weight: var(--font-semi-bold);
+  
+}
+.footer__description{
+display:block;
+font-size:var(--h3-font-size);
+margin: var(--mb-1) 0 var(--mb-3);
+}
+.footer__social{
+    font-size:1.5rem;
+    color:var(--first-color);
+    margin-right: var(--mb-2);
+}
+.footer__title{
+    font-size: var(--h2-font-size);
+    color:var(--first-color);
+    margin-bottom:var(--mb-2);
+}
+.footer__link{
+    display:inline-block;
+    color:var(--text-color);
+    margin-bottom: var(--mb-2);
+}
+.footer__link:hover{
+color:var(--first-color);
+}
+.footer__copy{
+    text-align: center;
+    font-size: var(--normal-font-size);
+    color:var(--text-color-light);
+    margin-top: var(--mb-3);
+}
+
+/*  MEDIA QUERIES   */
+/* from 0 to 576 this is done beacuse min-width use*/
+@media screen and (min-width:576px){
+    .home__container,.about__container,
+    .service__container,.app__container,
+    .contact__container{
+        grid-template-columns: repeat(2,1fr); /*it means 2 coloumn each 1 fr*/
+        text-align: center;
+        align-items: center;
+    }
+    .about__img,.app__img{
+        width:20rem;
+        order: -1; /* it means if photo is in right so by this photo move on left*/
+    }
+    .contact__container{
+        grid-template-columns: 1.75fr 1fr; /* divide 2 fr in parts*/
+        align-items: center;
+    }
+    .contact__button{
+        justify-self: center;
+    }
+    .nav__list{
+        justify-items: center;
+    }
+}
+
+@media screen and (min-width:768px)
+{
+    body{
+        margin:0;
+    }
+    .section{
+        padding-top: 4rem;;
+    }
+    .nav{
+        height: calc(var(--header-height));
+    }
+    .nav__list{
+        display:flex;
+    }
+    .nav__item{
+        margin-left: var(--mb-5);
+        margin-bottom: 0;
+    }
+   
+    .nav__toggle
+    {
+        display:none;
+    }
+
+    .home__container{
+        height: 100vh;
+        justify-items: center;
+    }
+    .service__container,.menu__container{
+       
+        margin-top: var(--mb-6);
+        /*this grid use beacuse may be service container width more so try to give
+        a 768\3 so all 3 are in same rows*/
+        grid-template-columns: repeat(3,222px);
+        column-gap: var(--mb-6);
+    }
+    .menu__content{
+        padding:var(--mb-4);
+    }
+    .menu__img{
+        width: 8rem;
+        height: 8rem;
+    }
+    .nav__list{
+        justify-items: center;
+        margin-right: var(--mb-4);
+        padding-right: var(--mb-6);
+    }
+    .footer__container{
+        padding-left: var(--mb-6);
+    }
+  
+}
+
+@media screen and(min-width:960px)
+{
+    .bd-container{
+        margin-left:auto;
+        margin-right: auto;
+    }
+    .home__img{
+        width:500px;
+    }
+    .about__container,.app__container{
+        column-gap: 7rem;
+    }
+    .section-title{
+        font-size: calc(var(--h1-font-size)+var(--mb-5));
+
+    }
+    .service__container,.menu__container{
+       
+        margin-top: var(--mb-6);
+        /*this grid use beacuse may be service container width more so try to give
+        a 768\3 so all 3 are in same rows*/
+        grid-template-columns: repeat(3,310px);
+        column-gap: var(--mb-3);
+    }
+    .menu__content{
+        padding:var(--mb-6);
+    }
+    .menu__img{
+        width: 10rem;
+        height: 10rem;
+    }
+    .nav__logo{
+        width:var(--mb-4);
+    }
+}
+@media screen and (min-width:1024px)
+{    .nav__logo{
+    padding-top: 0;
+    font-size: var(--h1-font-size);
+    }
+    .nav__toggle{
+        display:none;
+    }
+  
+    .nav__link{
+        font-size: var(--h3-font-size);
+        margin-left: var(--mb-2);
+    }
+   .change-theme{
+       position:initial;
+       margin-left: var(--mb-2);
+       top: var(--mb-4);
+       right: var(--mb-3);
+       position: absolute;
+   }
+   .bd__container{
+       height: 100vh;
+       justify-items: center;
+       margin-left: var(--mb-6);
+       margin-right: var(--mb-6);
+   
+    }
+
+    .service__container,.menu__container{
+       
+        margin-top: var(--mb-6);
+        /*this grid use beacuse may be service container width more so try to give
+        a 768\3 so all 3 are in same rows*/
+        grid-template-columns: repeat(3,330px);
+        column-gap: var(--mb-6);
+    }
+    .menu__content{
+        padding:var(--mb-6);
+    }
+    .menu__img{
+        width: 13rem;
+        height: 13rem;
+    }
+    .app{
+        margin-left: var(--mb-6);
+        margin-right: var(--mb-6);
+    }
+    .home__img,.app__img,.about__img
+    {
+        width:30rem;
+        height: 30rem;
+    }
+    .contact__container{
+        margin-top: 5rem;
+    }
+    .bd-container
+    {
+        margin-top: var(--mb-6);
+    }
+     
+    .nav__list{
+        justify-items: center;
+        margin-right: var(--mb-4);
+    }
+    .change-theme{
+        font-size: var(--mb-4);
+    }
+  
+}
